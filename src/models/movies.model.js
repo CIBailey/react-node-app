@@ -14,8 +14,6 @@ module.exports = (mongoose) => {
         actor_facets: Array,
         genre: Array,
         objectID: String,
-        title: Array,
-        alternative_titles: Array,
       },
       { timestamps: true }
     )
