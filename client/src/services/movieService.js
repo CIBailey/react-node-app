@@ -8,8 +8,8 @@ const deleteMovie = (id) => {
   return http.delete(`/movies/${id}`);
 };
 
-const searchMovie = (query) => {
-  return http.get(`/movies?search=${query}`);
+const searchMovie = (query = "") => {
+  return http.get(`/?search=${query}`);
 };
 
 export { createMovie, deleteMovie, searchMovie };

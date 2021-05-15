@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { createMovie } from "../services/movieService";
+import "../style/AddMovie.css";
 
 const AddMovie = () => {
   const genreOptions = [
@@ -115,17 +116,39 @@ const AddMovie = () => {
 
           <div className="form-group">
             <label>Rating</label>
-            <input
-              type="number"
-              className="form-control"
-              id="year"
-              max={5}
-              min={0}
-              required
-              value={movie.rating}
-              onChange={handleInputChange}
-              name="year"
-            />
+
+            <div class="rating">
+              <label>
+                <input type="radio" name="stars" value={1} />
+                <span class="icon">★</span>
+              </label>
+              <label>
+                <input type="radio" name="stars" value={2} />
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+              </label>
+              <label>
+                <input type="radio" name="stars" value={3} />
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+              </label>
+              <label>
+                <input type="radio" name="stars" value={4} />
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+              </label>
+              <label>
+                <input type="radio" name="stars" value={5} />
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+                <span class="icon">★</span>
+              </label>
+            </div>
           </div>
 
           <div className="form-group">

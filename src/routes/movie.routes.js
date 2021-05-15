@@ -3,13 +3,13 @@ module.exports = (app) => {
 
   var router = require("express").Router();
 
-  // Create a new Tutorial
+  // Create a new movie
   router.post("/1/movies", movies.create);
 
-  // Retrieve all Tutorials
-  router.get("/", movies.findAll);
+  // Retrieve searched movies
+  router.get("/1/?search=:query", movies.search);
 
-  // Delete a Tutorial with id
+  // Delete a movie with id
   router.delete("/1/movies:id", movies.delete);
 
   app.use("/api", router);
