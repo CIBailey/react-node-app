@@ -1,6 +1,16 @@
 const db = require("../models");
 const Movie = db.movies;
 
+const dotenv = require("dotenv");
+dotenv.config();
+
+const algoliasearch = require("algoliasearch");
+const client = algoliasearch(
+  process.env.REACT_APP_ALGOLIA_APPLICATION_ID,
+  process.env.REACT_APP_ALGOLIA_ADMIN_API_KEY
+);
+const index = client.initIndex(process.env.REACT_APP_ALGOLIA_INDEX_NAME);
+
 // Create and Save a new movie
 exports.create = (req, res) => {
   if (!req.body.title) {
@@ -13,7 +23,7 @@ exports.create = (req, res) => {
     alternative_titles: req.body.alternative_titles,
     year: req.body.year,
     image: req.body.image,
-    color: Sreq.body.color,
+    color: req.body.color,
     score: req.body.score,
     rating: req.body.rating,
     actors: req.body.actors,
@@ -22,10 +32,12 @@ exports.create = (req, res) => {
     objectID: req.body.objectID,
   });
 
-  movie
-    .save(movie)
-    .then((data) => {
-      res.send(data);
+  index
+    .saveObject(movie, { autoGenerateObjectIDIfNotExist: true })
+    .then(({ objectID }) => {
+      res.status(200).send({
+        message: "Object created:" + objectID,
+      });
     })
     .catch((err) => {
       res.status(500).send({
@@ -34,11 +46,12 @@ exports.create = (req, res) => {
     });
 };
 
-// Get all movies from the database.
+// // Get all movies from the database.
 exports.findAll = (req, res) => {
-  Movie.find()
-    .then((data) => {
-      res.send(data);
+  index
+    .search()
+    .then(({ hits }) => {
+      res.status(200).send(hits);
     })
     .catch((err) => {
       res.status(500).send({
@@ -47,10 +60,15 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Delete a movie with the specified id in the request
+// // Delete a movie with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
-  Movie.findByIdAndRemove(id)
+  console.log("ididid", id);
+
+  index
+    .deleteBy({
+      filters: "objectID:" + id,
+    })
     .then((data) => {
       if (!data) {
         res.status(404).send({
@@ -65,7 +83,7 @@ exports.delete = (req, res) => {
     .catch((err) => {
       console.log(err);
       res.status(500).send({
-        message: "Could not delete movoe with id=" + id,
+        message: err.message || "Could not delete movie with id=" + id,
       });
     });
 };
