@@ -9,7 +9,12 @@ const deleteMovie = (id) => {
 };
 
 const searchMovie = (query = "") => {
-  return http.get(`/?search=${query}`);
+  const endpoint = query ? `/search${query}` : `/search`;
+  return http.get(endpoint);
 };
 
-export { createMovie, deleteMovie, searchMovie };
+const getAllMovies = () => {
+  return http.post(`/allMovies`);
+};
+
+export { createMovie, deleteMovie, searchMovie, getAllMovies };

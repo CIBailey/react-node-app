@@ -60,9 +60,7 @@ exports.create = (req, res) => {
 
 // // Search all movies in Algolia.
 exports.search = (req, res) => {
-  const query = req.params.query;
-  console.log("ididid", query);
-
+  const query = req.params.query || "";
   index
     .search(query)
     .then(({ hits }) => {
