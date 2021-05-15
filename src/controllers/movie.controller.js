@@ -32,21 +32,33 @@ exports.create = (req, res) => {
     objectID: req.body.objectID,
   });
 
-  index
-    .saveObject(movie, { autoGenerateObjectIDIfNotExist: true })
-    .then(({ objectID }) => {
-      res.status(200).send({
-        message: "Object created:" + objectID,
-      });
+  movie
+    .save(movie)
+    .then(() => {
+      index
+        .saveObject(movie, { autoGenerateObjectIDIfNotExist: true })
+        .then(({ objectID }) => {
+          res.status(200).send({
+            message: "Object created:" + objectID,
+          });
+        })
+        .catch((err) => {
+          res.status(500).send({
+            message:
+              err.message || "Some error occurred while creating the movie.",
+          });
+        });
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while creating the movie.",
+        message:
+          err.message ||
+          "Some error occurred while creating the movie instance in database",
       });
     });
 };
 
-// // Get all movies from the database.
+// // Search all movies in Algolia.
 exports.findAll = (req, res) => {
   index
     .search()
@@ -69,14 +81,22 @@ exports.delete = (req, res) => {
     .deleteBy({
       filters: "objectID:" + id,
     })
-    .then((data) => {
-      if (!data) {
+    .then(() => {
+      if (!id) {
         res.status(404).send({
-          message: `Cannot delete movie with id=${id}. Not found`,
+          message: `Cannot delete movie with id=${id}. No ID Provided`,
         });
       } else {
-        res.send({
-          message: "Movie was deleted successfully!",
+        Movie.findByIdAndRemove(id).then((data) => {
+          if (!data) {
+            res.status(404).send({
+              message: `Cannot delete movie with id=${id}. Not found in MongoDB`,
+            });
+          } else {
+            res.status(200).send({
+              message: "Movie was deleted successfully!",
+            });
+          }
         });
       }
     })
