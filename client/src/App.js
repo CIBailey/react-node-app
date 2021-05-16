@@ -9,17 +9,17 @@ function App() {
     <div>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <a href="/movies" className="navbar-brand">
-          <img src="511bjMvvqAL.png" alt="movie_app_icon" />
+          <img src="logo.png" alt="movie_app_icon" />
           MovieApp.io
         </a>
         <div className="navbar-nav mr-auto">
           <li className="nav-item">
-            <Link to={"/movies"} className="nav-link">
+            <Link to="/movies" className="nav-link">
               Movies
             </Link>
           </li>
           <li className="nav-item">
-            <Link to={"/add"} className="nav-link">
+            <Link to="/add" className="nav-link">
               Add
             </Link>
           </li>

@@ -31,6 +31,8 @@
 img,
 svg {
   height: 35px;
+  margin-left: 30px;
+  margin-right: 15px;
 }
 
 @keyframes App-logo-spin {

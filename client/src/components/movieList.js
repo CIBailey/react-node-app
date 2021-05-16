@@ -5,7 +5,6 @@ import Movie from "./movie.js";
 
 const MovieList = () => {
   const [movies, setMovies] = useState([]);
-  const [currentMovie, setCurrentMovie] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(-1);
   const [searchTitle, setSearchTitle] = useState("");
 
@@ -31,18 +30,16 @@ const MovieList = () => {
 
   const refreshList = () => {
     retrieveMovies();
-    setCurrentMovie(null);
     setCurrentIndex(-1);
   };
 
   const setActiveMovie = (movie, index) => {
-    setCurrentMovie(movie);
     setCurrentIndex(index);
   };
 
   const handleDeleteMovie = (objectID) => {
     deleteMovie(objectID)
-      .then((response) => {
+      .then(() => {
         refreshList();
       })
       .catch((e) => {

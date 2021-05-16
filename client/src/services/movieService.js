@@ -1,6 +1,7 @@
 import http from "../http-common";
 
 const createMovie = (data) => {
+  console.log("yep", JSON.stringify(data));
   return http.post("/movies", data);
 };
 

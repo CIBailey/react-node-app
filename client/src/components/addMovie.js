@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { createMovie } from "../services/movieService";
-import "../style/AddMovie.css";
+import "../style/addMovie.css";
 
 const AddMovie = () => {
   const genreOptions = [
@@ -31,6 +31,8 @@ const AddMovie = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+    console.log(name, value);
+
     setMovie({ ...movie, [name]: value });
   };
 
@@ -75,124 +77,183 @@ const AddMovie = () => {
   };
 
   return (
-    <div className="submit-form">
-      {submitted ? (
-        <div>
-          <h4>You submitted successfully!</h4>
-          <button className="btn btn-success" onClick={newMovie}>
-            Add
-          </button>
+    <div>
+      <div className="row">
+        <div className="col-md-4"></div>
+        <div className="col-md-5">
+          <div className="submit-form">
+            {submitted ? (
+              <div class="form-style-2">
+                <div class="form-style-2-heading">
+                  You submitted successfully!
+                </div>
+                <button
+                  className="btn "
+                  style={{ backgroundColor: "#f4a261" }}
+                  onClick={newMovie}
+                >
+                  Add
+                </button>
+              </div>
+            ) : (
+              <div>
+                <div class="form-style-2">
+                  <div class="form-style-2-heading">
+                    Add a movie to the database
+                  </div>
+
+                  <label for="title">
+                    <span>
+                      Title <span class="required">*</span>
+                    </span>
+                    <input
+                      type="text"
+                      id="title"
+                      required
+                      class="input-field"
+                      name="title"
+                      value={movie.title}
+                      onChange={handleInputChange}
+                    />
+                  </label>
+
+                  <label for="year">
+                    <span>
+                      Year <span class="required">*</span>
+                    </span>
+                    <input
+                      type="number"
+                      max={2021}
+                      min={0}
+                      required
+                      class="input-field"
+                      name="year"
+                      value={movie.description}
+                      onChange={handleInputChange}
+                    />
+                  </label>
+
+                  <label for="image">
+                    <span>Image</span>
+                    <input
+                      onChange={handleInputChange}
+                      type="file"
+                      class="input-field"
+                      name="image"
+                      value={movie.image}
+                    />
+                  </label>
+
+                  <label for="genre">
+                    <span>
+                      Genre <span class="required">*</span>
+                    </span>
+                    <select
+                      onChange={handleInputChange}
+                      required
+                      name="genre"
+                      class="select-field"
+                    >
+                      {genreOptions.map((oneGenre) => {
+                        return (
+                          <option key={oneGenre} value={oneGenre}>
+                            {oneGenre}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </label>
+
+                  <label for="actors">
+                    <span>
+                      Actors <span class="required">*</span>
+                    </span>
+                    <input
+                      type="text"
+                      id="actors"
+                      required
+                      class="input-field"
+                      name="actors"
+                      value={movie.actors}
+                      onChange={handleInputChange}
+                    />
+                  </label>
+
+                  <label for="rating">
+                    <span>
+                      Rating <span class="required">*</span>
+                    </span>
+
+                    <div class="rating">
+                      <label>
+                        <input
+                          onChange={handleInputChange}
+                          type="radio"
+                          name="rating"
+                          value={1}
+                        />
+                        <div class="icon">★</div>
+                      </label>
+                      <label>
+                        <input
+                          onChange={handleInputChange}
+                          type="radio"
+                          name="rating"
+                          value={2}
+                        />
+                        <div class="icon">★</div>
+                        <div class="icon">★</div>
+                      </label>
+                      <label>
+                        <input
+                          onChange={handleInputChange}
+                          type="radio"
+                          name="rating"
+                          value={3}
+                        />
+                        <div class="icon">★</div>
+                        <div class="icon">★</div>
+                        <div class="icon">★</div>
+                      </label>
+                      <label>
+                        <input
+                          onChange={handleInputChange}
+                          type="radio"
+                          name="rating"
+                          value={4}
+                        />
+                        <div class="icon">★</div>
+                        <div class="icon">★</div>
+                        <div class="icon">★</div>
+                        <div class="icon">★</div>
+                      </label>
+                      <label>
+                        <input
+                          onChange={handleInputChange}
+                          type="radio"
+                          name="rating"
+                          value={5}
+                        />
+                        <div class="icon">★</div>
+                        <div class="icon">★</div>
+                        <div class="icon">★</div>
+                        <div class="icon">★</div>
+                        <div class="icon">★</div>
+                      </label>
+                    </div>
+                  </label>
+
+                  <label>
+                    <span> </span>
+                    <input onClick={saveMovie} type="submit" value="Submit" />
+                  </label>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
-      ) : (
-        <div>
-          <div className="form-group">
-            <label>Title</label>
-            <input
-              type="text"
-              className="form-control"
-              id="title"
-              required
-              value={movie.title}
-              onChange={handleInputChange}
-              name="title"
-            />
-          </div>
-
-          <div className="form-group">
-            <label>Year</label>
-            <input
-              type="number"
-              className="form-control"
-              id="year"
-              max={2021}
-              min={0}
-              required
-              value={movie.description}
-              onChange={handleInputChange}
-              name="year"
-            />
-          </div>
-
-          <div className="form-group">
-            <label>Rating</label>
-
-            <div class="rating">
-              <label>
-                <input type="radio" name="stars" value={1} />
-                <span class="icon">★</span>
-              </label>
-              <label>
-                <input type="radio" name="stars" value={2} />
-                <span class="icon">★</span>
-                <span class="icon">★</span>
-              </label>
-              <label>
-                <input type="radio" name="stars" value={3} />
-                <span class="icon">★</span>
-                <span class="icon">★</span>
-                <span class="icon">★</span>
-              </label>
-              <label>
-                <input type="radio" name="stars" value={4} />
-                <span class="icon">★</span>
-                <span class="icon">★</span>
-                <span class="icon">★</span>
-                <span class="icon">★</span>
-              </label>
-              <label>
-                <input type="radio" name="stars" value={5} />
-                <span class="icon">★</span>
-                <span class="icon">★</span>
-                <span class="icon">★</span>
-                <span class="icon">★</span>
-                <span class="icon">★</span>
-              </label>
-            </div>
-          </div>
-
-          <div className="form-group">
-            <label>Image</label>
-            <input type="file" id="myFile" name="filename" />
-          </div>
-
-          <div className="form-group">
-            <label>Actors</label>
-            <input
-              type="text"
-              className="form-control"
-              id="actors"
-              required
-              value={movie.actors}
-              onChange={handleInputChange}
-              name="actors"
-            />
-          </div>
-
-          <div className="form-group">
-            <label for="genre">Genre</label>
-            <select
-              className="form-control"
-              name="genre"
-              onChange={handleInputChange}
-              id="genre"
-              required
-              multiple
-            >
-              {genreOptions.map((oneGenre) => {
-                return (
-                  <option key={oneGenre} value={oneGenre}>
-                    {oneGenre}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
-
-          <button onClick={saveMovie} className="btn btn-success">
-            Submit
-          </button>
-        </div>
-      )}
+        <div className="col-md-4"></div>
+      </div>
     </div>
   );
 };
