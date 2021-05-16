@@ -1,12 +1,3 @@
-// React.useEffect(() => {
-//   fetch("/api")
-//     .then((resp) => resp.json())
-//     .then((data) => setData(data.message))
-//     .catch(function (error) {
-//       console.log(error);
-//     });
-// }, []);
-
 import React from "react";
 import { Switch, Link, Route } from "react-router-dom";
 import MoviesList from "./components/movieList.js";

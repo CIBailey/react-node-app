@@ -63,7 +63,6 @@ const AddMovie = () => {
           genre: response.data.genre,
         });
         setSubmitted(true);
-        console.log(response.data);
       })
       .catch((e) => {
         console.log(e);

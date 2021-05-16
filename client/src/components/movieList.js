@@ -1,6 +1,7 @@
-import "../style/MovieList.css";
+import "../style/movieList.css";
 import React, { useState, useEffect } from "react";
 import { deleteMovie, searchMovie } from "../services/movieService";
+import Movie from "./movie.js";
 
 const MovieList = () => {
   const [movies, setMovies] = useState([]);
@@ -20,8 +21,8 @@ const MovieList = () => {
   const retrieveMovies = () => {
     searchMovie()
       .then((response) => {
+        response.data.length = 10;
         setMovies(response.data);
-        console.log(response.data);
       })
       .catch((e) => {
         console.log(e);
@@ -39,10 +40,9 @@ const MovieList = () => {
     setCurrentIndex(index);
   };
 
-  const removeMovie = () => {
-    deleteMovie()
+  const handleDeleteMovie = (objectID) => {
+    deleteMovie(objectID)
       .then((response) => {
-        console.log(response.data);
         refreshList();
       })
       .catch((e) => {
@@ -54,11 +54,16 @@ const MovieList = () => {
     searchMovie(searchTitle)
       .then((response) => {
         setMovies(response.data);
-        console.log(response.data);
       })
       .catch((e) => {
         console.log(e);
       });
+  };
+
+  const handleKeypress = (e) => {
+    if (e.charCode === 13) {
+      searchMovies();
+    }
   };
 
   return (
@@ -70,23 +75,11 @@ const MovieList = () => {
           name="search"
           value={searchTitle}
           onChange={onChangeSearchTitle}
+          onKeyPress={handleKeypress}
           placeholder="Search.."
         />
+        <div className="col-md-8"></div>
         <div className="col-md-8">
-          {/* <div className="input-group mb-3"> */}
-
-          <div className="input-group-append">
-            <button
-              className="btn btn-outline-secondary"
-              type="button"
-              onClick={searchMovies}
-            >
-              Search
-            </button>
-          </div>
-          {/* </div> */}
-        </div>
-        <div className="col-md-6">
           <h4>Movie List</h4>
 
           <ul className="list-group">
@@ -98,9 +91,16 @@ const MovieList = () => {
                     (index === currentIndex ? "active" : "")
                   }
                   onClick={() => setActiveMovie(movies, index)}
-                  key={index}
+                  key={`movie_div_${index}`}
                 >
-                  {movies.title}
+                  <button
+                    className="btn"
+                    onClick={() => handleDeleteMovie(movies.objectID)}
+                  >
+                    <i className="fa fa-trash"></i> Remove
+                  </button>
+
+                  <Movie movie={movies} />
                 </li>
               ))}
           </ul>
