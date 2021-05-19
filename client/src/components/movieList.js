@@ -64,8 +64,8 @@ const MovieList = () => {
   };
 
   return (
-    <div>
-      <div className="list row">
+    <div className="list row">
+      <div>
         <input
           type="text"
           className="searchBar"
@@ -73,35 +73,32 @@ const MovieList = () => {
           value={searchTitle}
           onChange={onChangeSearchTitle}
           onKeyPress={handleKeypress}
-          placeholder="Search.."
+          placeholder={"Search.."}
         />
-        <div className="col-md-8"></div>
-        <div className="col-md-8">
-          <h4>Movie List</h4>
-
-          <ul className="list-group">
-            {movies &&
-              movies.map((movies, index) => (
-                <li
-                  className={
-                    "list-group-item " +
-                    (index === currentIndex ? "active" : "")
-                  }
-                  onClick={() => setActiveMovie(movies, index)}
-                  key={`movie_div_${index}`}
+      </div>
+      <div className="col-md-8"></div>
+      <div className="col-md-8">
+        <ul className="list-group">
+          {movies &&
+            movies.map((movies, index) => (
+              <li
+                className={
+                  "list-group-item " + (index === currentIndex ? "active" : "")
+                }
+                onClick={() => setActiveMovie(movies, index)}
+                key={`movie_div_${index}`}
+              >
+                <button
+                  className="btn"
+                  onClick={() => handleDeleteMovie(movies.objectID)}
                 >
-                  <button
-                    className="btn"
-                    onClick={() => handleDeleteMovie(movies.objectID)}
-                  >
-                    <i className="fa fa-trash"></i> Remove
-                  </button>
+                  <i className="fa fa-trash"></i> Remove
+                </button>
 
-                  <Movie movie={movies} />
-                </li>
-              ))}
-          </ul>
-        </div>
+                <Movie movie={movies} />
+              </li>
+            ))}
+        </ul>
       </div>
     </div>
   );

@@ -98,10 +98,7 @@ const AddMovie = () => {
             ) : (
               <div>
                 <div class="form-style-2">
-                  <div class="form-style-2-heading">
-                    Add a movie to the database
-                  </div>
-
+                  <h4>Add a movie to the database</h4>
                   <label for="title">
                     <span>
                       Title <span class="required">*</span>
@@ -116,7 +113,6 @@ const AddMovie = () => {
                       onChange={handleInputChange}
                     />
                   </label>
-
                   <label for="year">
                     <span>
                       Year <span class="required">*</span>
@@ -132,7 +128,6 @@ const AddMovie = () => {
                       onChange={handleInputChange}
                     />
                   </label>
-
                   <label for="image">
                     <span>Image</span>
                     <input
@@ -143,7 +138,6 @@ const AddMovie = () => {
                       value={movie.image}
                     />
                   </label>
-
                   <label for="genre">
                     <span>
                       Genre <span class="required">*</span>
@@ -163,7 +157,6 @@ const AddMovie = () => {
                       })}
                     </select>
                   </label>
-
                   <label for="actors">
                     <span>
                       Actors <span class="required">*</span>
@@ -178,7 +171,6 @@ const AddMovie = () => {
                       onChange={handleInputChange}
                     />
                   </label>
-
                   <label for="rating">
                     <span>
                       Rating <span class="required">*</span>
@@ -242,7 +234,6 @@ const AddMovie = () => {
                       </label>
                     </div>
                   </label>
-
                   <label>
                     <span> </span>
                     <input onClick={saveMovie} type="submit" value="Submit" />

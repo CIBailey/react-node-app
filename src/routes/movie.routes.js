@@ -6,10 +6,10 @@ module.exports = (app) => {
   // Create a new movie
   router.post("/1/movies", movies.create);
 
-  router.get("/1/search:query", movies.search);
+  router.get("/1/search/:query?", movies.search);
 
   // Delete a movie with id
-  router.delete("/1/movies:id", movies.delete);
+  router.delete("/1/movies/:id", movies.delete);
 
   app.use("/api", router);
 };

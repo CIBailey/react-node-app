@@ -39,7 +39,7 @@ exports.create = (req, res) => {
         .saveObject(movie, { autoGenerateObjectIDIfNotExist: true })
         .then(({ objectID }) => {
           res.status(200).send({
-            message: "Object created:" + objectID,
+            message: `Object created: ${objectID}`,
           });
         })
         .catch((err) => {
@@ -76,11 +76,9 @@ exports.search = (req, res) => {
 // // Delete a movie with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
-  console.log("ididid", id);
-
   index
     .deleteBy({
-      filters: "objectID:" + id,
+      filters: `objectID:${id}`,
     })
     .then(() => {
       if (!id) {
@@ -88,23 +86,20 @@ exports.delete = (req, res) => {
           message: `Cannot delete movie with id=${id}. No ID Provided`,
         });
       } else {
-        Movie.findByIdAndRemove(id).then((data) => {
-          if (!data) {
-            res.status(404).send({
-              message: `Cannot delete movie with id=${id}. Not found in MongoDB`,
-            });
-          } else {
-            res.status(200).send({
-              message: "Movie was deleted successfully!",
-            });
-          }
+        Movie.findOneAndRemove(
+          { objectID: id },
+          { useFindAndModify: false }
+        ).then(() => {
+          res.status(200).send({
+            message: "Movie was deleted successfully!",
+          });
         });
       }
     })
     .catch((err) => {
       console.log(err);
       res.status(500).send({
-        message: err.message || "Could not delete movie with id=" + id,
+        message: err.message || `Could not delete movie with id=${id}`,
       });
     });
 };
