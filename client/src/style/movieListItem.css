@@ -1,0 +1,50 @@
+.stars {
+  display: flex;
+  flex-direction: row;
+}
+
+.card-text {
+  display: flex;
+  flex-direction: row;
+}
+
+.card-title {
+  padding: 0;
+}
+.single-star {
+  font-size: 25px;
+  padding: 3px;
+  color: gold;
+}
+
+.list-group-item {
+  color: white;
+  background-color: black;
+}
+
+.genre {
+  display: flex;
+  flex-direction: row;
+  padding-left: 15px;
+  float: right;
+}
+
+.one-genre {
+  padding-left: 10px;
+}
+.year {
+  font-weight: bold;
+  float: left;
+}
+
+.actor {
+  color: gold;
+  margin: 17px;
+  width: 70px;
+}
+
+.subtext {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+}

@@ -64,12 +64,12 @@ h4 {
   height: 100px;
   width: 55%;
 }
-.form-style-2 input[type="submit"],
-.form-style-2 input[type="button"] {
+.form-style-2 input[type='submit'],
+.form-style-2 input[type='button'] {
   border: none;
   padding: 8px 15px 8px 15px;
-  background: #f4a261;
-  color: #fff;
+  background: gold;
+  color: black;
   box-shadow: 1px 1px 4px #dadada;
   -moz-box-shadow: 1px 1px 4px #dadada;
   -webkit-box-shadow: 1px 1px 4px #dadada;
@@ -77,8 +77,8 @@ h4 {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
 }
-.form-style-2 input[type="submit"]:hover,
-.form-style-2 input[type="button"]:hover {
+.form-style-2 input[type='submit']:hover,
+.form-style-2 input[type='button']:hover {
   background: #f4a261;
   color: #fff;
 }

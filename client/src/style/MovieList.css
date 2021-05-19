@@ -1,15 +1,35 @@
 .searchBar {
-  width: 130px;
-  -webkit-transition: width 0.4s ease-in-out;
-  transition: width 0.4s ease-in-out;
+  width: 475px;
+}
+
+.list-group {
+  padding-top: 25px;
 }
 
 .searchBar:focus {
   width: 100%;
 }
 
-/* .list {
+.list {
   text-align: left;
   max-width: 750px;
   margin: auto;
-} */
+}
+
+.list-group-item {
+  border-color: white;
+  padding: 30px;
+}
+
+.cardTitle {
+  font-size: 20px;
+}
+
+btn {
+  float: right;
+  color: gold;
+}
+
+.remove {
+  float: right;
+}

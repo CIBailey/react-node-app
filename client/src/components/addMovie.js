@@ -1,27 +1,27 @@
-import React, { useState } from "react";
-import { createMovie } from "../services/movieService";
-import "../style/addMovie.css";
+import React, { useState } from 'react';
+import { createMovie } from '../services/movieService';
+import '../style/addMovie.css';
 
 const AddMovie = () => {
   const genreOptions = [
-    "Action",
-    "Adventure",
-    "Comedy",
-    "Mystery",
-    "Fantasy",
-    "Horror",
-    "Thriller",
-    "Romance",
-    "Western",
+    'Action',
+    'Adventure',
+    'Comedy',
+    'Mystery',
+    'Fantasy',
+    'Horror',
+    'Thriller',
+    'Romance',
+    'Western',
   ];
   const initialMovieState = {
-    title: "",
+    title: '',
     alternative_titles: [],
     year: null,
-    image: "",
-    color: "",
-    score: "",
-    rating: "",
+    image: '',
+    color: '',
+    score: '',
+    rating: '',
     actors: [],
     actor_facets: [],
     genre: [],
@@ -42,8 +42,8 @@ const AddMovie = () => {
       alternative_titles: [],
       year: movie.year,
       image: movie.image,
-      color: "",
-      score: "",
+      color: '',
+      score: '',
       rating: movie.rating,
       actors: movie.actors,
       actor_facets: [],
@@ -78,18 +78,16 @@ const AddMovie = () => {
 
   return (
     <div>
-      <div className="row">
-        <div className="col-md-4"></div>
-        <div className="col-md-5">
-          <div className="submit-form">
+      <div className='row'>
+        <div className='col-md-4'></div>
+        <div className='col-md-5'>
+          <div className='submit-form'>
             {submitted ? (
-              <div class="form-style-2">
-                <div class="form-style-2-heading">
-                  You submitted successfully!
-                </div>
+              <div class='form-style-2'>
+                <h4>You submitted successfully!</h4>
                 <button
-                  className="btn "
-                  style={{ backgroundColor: "#f4a261" }}
+                  className='btn '
+                  style={{ backgroundColor: '#f4a261' }}
                   onClick={newMovie}
                 >
                   Add
@@ -97,56 +95,56 @@ const AddMovie = () => {
               </div>
             ) : (
               <div>
-                <div class="form-style-2">
+                <div class='form-style-2'>
                   <h4>Add a movie to the database</h4>
-                  <label for="title">
+                  <label for='title'>
                     <span>
-                      Title <span class="required">*</span>
+                      Title <span class='required'>*</span>
                     </span>
                     <input
-                      type="text"
-                      id="title"
+                      type='text'
+                      id='title'
                       required
-                      class="input-field"
-                      name="title"
+                      class='input-field'
+                      name='title'
                       value={movie.title}
                       onChange={handleInputChange}
                     />
                   </label>
-                  <label for="year">
+                  <label for='year'>
                     <span>
-                      Year <span class="required">*</span>
+                      Year <span class='required'>*</span>
                     </span>
                     <input
-                      type="number"
+                      type='number'
                       max={2021}
                       min={0}
                       required
-                      class="input-field"
-                      name="year"
+                      class='input-field'
+                      name='year'
                       value={movie.description}
                       onChange={handleInputChange}
                     />
                   </label>
-                  <label for="image">
+                  <label for='image'>
                     <span>Image</span>
                     <input
                       onChange={handleInputChange}
-                      type="file"
-                      class="input-field"
-                      name="image"
+                      type='file'
+                      class='input-field'
+                      name='image'
                       value={movie.image}
                     />
                   </label>
-                  <label for="genre">
+                  <label for='genre'>
                     <span>
-                      Genre <span class="required">*</span>
+                      Genre <span class='required'>*</span>
                     </span>
                     <select
                       onChange={handleInputChange}
                       required
-                      name="genre"
-                      class="select-field"
+                      name='genre'
+                      class='select-field'
                     >
                       {genreOptions.map((oneGenre) => {
                         return (
@@ -157,93 +155,93 @@ const AddMovie = () => {
                       })}
                     </select>
                   </label>
-                  <label for="actors">
+                  <label for='actors'>
                     <span>
-                      Actors <span class="required">*</span>
+                      Actors <span class='required'>*</span>
                     </span>
                     <input
-                      type="text"
-                      id="actors"
+                      type='text'
+                      id='actors'
                       required
-                      class="input-field"
-                      name="actors"
+                      class='input-field'
+                      name='actors'
                       value={movie.actors}
                       onChange={handleInputChange}
                     />
                   </label>
-                  <label for="rating">
+                  <label for='rating'>
                     <span>
-                      Rating <span class="required">*</span>
+                      Rating <span class='required'>*</span>
                     </span>
 
-                    <div class="rating">
+                    <div class='rating'>
                       <label>
                         <input
                           onChange={handleInputChange}
-                          type="radio"
-                          name="rating"
+                          type='radio'
+                          name='rating'
                           value={1}
                         />
-                        <div class="icon">★</div>
+                        <div class='icon'>★</div>
                       </label>
                       <label>
                         <input
                           onChange={handleInputChange}
-                          type="radio"
-                          name="rating"
+                          type='radio'
+                          name='rating'
                           value={2}
                         />
-                        <div class="icon">★</div>
-                        <div class="icon">★</div>
+                        <div class='icon'>★</div>
+                        <div class='icon'>★</div>
                       </label>
                       <label>
                         <input
                           onChange={handleInputChange}
-                          type="radio"
-                          name="rating"
+                          type='radio'
+                          name='rating'
                           value={3}
                         />
-                        <div class="icon">★</div>
-                        <div class="icon">★</div>
-                        <div class="icon">★</div>
+                        <div class='icon'>★</div>
+                        <div class='icon'>★</div>
+                        <div class='icon'>★</div>
                       </label>
                       <label>
                         <input
                           onChange={handleInputChange}
-                          type="radio"
-                          name="rating"
+                          type='radio'
+                          name='rating'
                           value={4}
                         />
-                        <div class="icon">★</div>
-                        <div class="icon">★</div>
-                        <div class="icon">★</div>
-                        <div class="icon">★</div>
+                        <div class='icon'>★</div>
+                        <div class='icon'>★</div>
+                        <div class='icon'>★</div>
+                        <div class='icon'>★</div>
                       </label>
                       <label>
                         <input
                           onChange={handleInputChange}
-                          type="radio"
-                          name="rating"
+                          type='radio'
+                          name='rating'
                           value={5}
                         />
-                        <div class="icon">★</div>
-                        <div class="icon">★</div>
-                        <div class="icon">★</div>
-                        <div class="icon">★</div>
-                        <div class="icon">★</div>
+                        <div class='icon'>★</div>
+                        <div class='icon'>★</div>
+                        <div class='icon'>★</div>
+                        <div class='icon'>★</div>
+                        <div class='icon'>★</div>
                       </label>
                     </div>
                   </label>
                   <label>
                     <span> </span>
-                    <input onClick={saveMovie} type="submit" value="Submit" />
+                    <input onClick={saveMovie} type='submit' value='Submit' />
                   </label>
                 </div>
               </div>
             )}
           </div>
         </div>
-        <div className="col-md-4"></div>
+        <div className='col-md-4'></div>
       </div>
     </div>
   );
